@@ -2,7 +2,7 @@
   "name": "goit-react-hw-06-phonebook",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://54Cat.github.io/test-hw6/",
+  "homepage": "https://github.com/Nataliia2/goit-react-hw-06-phonebook.git",
   "dependencies": {
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
