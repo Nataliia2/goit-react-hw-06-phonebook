@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Nataliia2/goit-react-hw-06-phonebook.git/static/css/main.7acaea2f.css",
+    "main.js": "/Nataliia2/goit-react-hw-06-phonebook.git/static/js/main.41e12254.js",
+    "index.html": "/Nataliia2/goit-react-hw-06-phonebook.git/index.html",
+    "main.7acaea2f.css.map": "/Nataliia2/goit-react-hw-06-phonebook.git/static/css/main.7acaea2f.css.map",
+    "main.41e12254.js.map": "/Nataliia2/goit-react-hw-06-phonebook.git/static/js/main.41e12254.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7acaea2f.css",
+    "static/js/main.41e12254.js"
+  ]
+}
