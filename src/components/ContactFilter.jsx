@@ -1,15 +1,7 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { setContactFilter } from '../redux/filterSlice';
 import { Wrapper } from './ContactFilter.styles';
 import { Label, Input } from 'components/Form.style';
 
-export const FilterContact = () => {
-  const value = useSelector(state => state.filter);
-  const dispatch = useDispatch();
-  const onChange = ev => {
-    dispatch(setContactFilter(ev.currentTarget.value));
-
-  };
+export const FilterContact = ({onChange, value}) => {
   
   return (
     <Wrapper>

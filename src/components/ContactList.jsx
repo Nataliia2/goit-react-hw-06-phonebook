@@ -4,13 +4,13 @@ import { deleteContact } from '../redux/contactsSlice';
 import { List, Item, Button } from './ContactList.styles';
 
 export const ContactList = ({ items }) => {
-  const dispatch = useDispatch;
+  const dispatch = useDispatch();
 
     const itemList = items.map(({ id, name, number }) => {
       return (
         <Item key={id}>
           {name}: {number}
-          <Button type="button" onClick={() => dispatch(deleteContact(id))}>
+          <Button type="button" onClick={() => dispatch(deleteContact({id}))}>
             Delete
           </Button>
         </Item>

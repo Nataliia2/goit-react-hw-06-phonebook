@@ -26,8 +26,8 @@ export const App = () => {
     dispatch(addContact(data));
   };
 
-  const filterChange = evt => {
-    const { value } = evt.currentTarget;
+  const onChange = ev => {
+    const {value} = ev.currentTarget;
     dispatch(setContactFilter(value));
   };
 
@@ -45,11 +45,6 @@ export const App = () => {
     });
   };
 
-  const removeContact = id => {
-    const newContact = contacts.filter(item => item.id !== id);
-    return getContacts(newContact);
-  };
-
   return (
     <>
       <Title>Phonebook</Title>
@@ -57,8 +52,8 @@ export const App = () => {
       {contacts.length !== 0 && (
         <>
           <SubTitle>Contacts</SubTitle>
-          <FilterContact onChange={filterChange} value={filters} />
-          <ContactList items={getFilter()} onRemove={removeContact} />
+          <FilterContact onChange={onChange} value={filters} />
+          <ContactList items={getFilter()} />
         </>
       )}
     </>
