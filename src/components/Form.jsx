@@ -1,18 +1,25 @@
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
+import { useSelector, useDispatch } from 'react-redux';
+import { addContact } from '../redux/contactsSlice';
+import { getContacts } from 'redux/selectors';
 import { Form, Label, Input, Button } from './Form.style';
 
 
-export const ContactForm = ({ onAddContacs }) => {
+export const ContactForm = () => {
+  const contacts = useSelector(getContacts);
+  const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
-  const nameId = nanoid(5);
-  const numberId = nanoid(5);
+  const nameId = nanoid();
+  const numberId = nanoid();
 
   const submitContacts = evt => {
     evt.preventDefault();
-    onAddContacs({ name, number });
+    contacts.find(contact => contact.name === name)
+
+    dispatch(addContact({ name, number }));
     setName('');
     setNumber('');
   };

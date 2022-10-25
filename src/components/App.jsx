@@ -1,21 +1,18 @@
-import { useState, useEffect } from 'react';
-import { nanoid } from 'nanoid';
+import { useSelector, useDispatch } from 'react-redux';
+import { getContacts, getStatusFilter } from "../redux/selectors";
+import { addContact } from "../redux/contactsSlice";
+import { setContactFilter } from "../redux/filterSlice";
 import {ContactForm} from "./Form";
 import {ContactList} from "./ContactList";
-import { Filter } from './ContactFilter';
+import { FilterContact } from './ContactFilter';
 import  { Title, SubTitle } from "./App.styles";
 
 
 export const App = () => {
-  const [contacts, setContacts] = useState(() => {
-    return JSON.parse(localStorage.getItem('contacts')) ?? [];
-  });
+  const contacts = useSelector(getContacts);
+  const filters = useSelector(getStatusFilter);
+  const dispatch = useDispatch();
 
-  const [filters, SetFilters] = useState('');
-
-  useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts]);
 
   const isDublicate = ({ name }) => {
     const result = contacts.find(item => item.name === name);
@@ -26,18 +23,12 @@ export const App = () => {
     if (isDublicate(data)) {
       return alert(`${data.name} is already in contacts `);
     }
-    const newContact = {
-      id: nanoid(5),
-      ...data,
-    };
-
-    return setContacts([...contacts, newContact]);
+    dispatch(addContact(data));
   };
 
   const filterChange = evt => {
     const { value } = evt.currentTarget;
-
-    SetFilters(value);
+    dispatch(setContactFilter(value));
   };
 
   const getFilter = () => {
@@ -56,7 +47,7 @@ export const App = () => {
 
   const removeContact = id => {
     const newContact = contacts.filter(item => item.id !== id);
-    return setContacts(newContact);
+    return getContacts(newContact);
   };
 
   return (
@@ -66,7 +57,7 @@ export const App = () => {
       {contacts.length !== 0 && (
         <>
           <SubTitle>Contacts</SubTitle>
-          <Filter onChange={filterChange} value={filters} />
+          <FilterContact onChange={filterChange} value={filters} />
           <ContactList items={getFilter()} onRemove={removeContact} />
         </>
       )}
